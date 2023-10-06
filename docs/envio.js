@@ -30,7 +30,6 @@ datos.addEventListener('submit', function (e) {
           'Content-Type': 'application/json', // Indica que estás enviando JSON en el cuerpo
         },
         body: JSON.stringify(user), // Convierte el objeto a JSON y lo envía en el cuerpo
-        referrerPolicy: "unsafe_url" 
       }).then(response => {
         // Manejar la respuesta aquí si es necesario
         if (response.status === 201) {
