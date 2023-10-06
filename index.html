@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h2 class="mt-5 mb-3">Iniciar Sesión</h2>
+                <form id="datos">
+                    <div class="form-group">
+                        <label for="usuario">Usuario</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Ingresa tu usuario">
+                    </div>
+                    <div class="form-group">
+                        <label for="contrasena">Contraseña</label>
+                        <input type="password" class="form-control" id="contrasena" placeholder="Ingresa tu contraseña">
+                    </div>
+                    <div class="form-group">
+                        <label for="foto">Fotografía</label>
+                        <input type="file" capture="camera" class="form-control" id="foto" placeholder="Tu fotografía">
+                    </div>
+                    <button id="btnIniciarSesion" type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                </form>
+                <div id="message_success">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="envio.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
