@@ -24,7 +24,7 @@ datos.addEventListener('submit', function (e) {
       };
 
       // Envia la solicitud POST al servicio de Express
-      fetch("https://50.17.46.30:3000/user", {
+      fetch("https://50.17.46.30", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json', // Indica que estás enviando JSON en el cuerpo
