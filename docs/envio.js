@@ -24,7 +24,7 @@ datos.addEventListener('submit', function (e) {
       };
 
       // Envia la solicitud POST al servicio de Express
-      fetch("https://50.17.46.30", {
+      fetch("https://proyectomq.alliedg.tk/", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json', // Indica que estás enviando JSON en el cuerpo
