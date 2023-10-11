@@ -24,7 +24,7 @@ datos.addEventListener('submit', function (e) {
       };
 
       // Envia la solicitud POST al servicio de Express
-      fetch("https://proyectomq.alliedg.tk", {
+      fetch("https://proyectomq.alliedg.tk/user", {
          method: "POST",
          headers: {
              'Content-Type': 'application/json', // Indica que estás enviando JSON en el cuerpo
