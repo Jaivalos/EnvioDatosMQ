@@ -24,16 +24,16 @@ datos.addEventListener('submit', function (e) {
       };
 
       // Envia la solicitud POST al servicio de Express
-      // fetch("https://proyectomq.alliedg.tk", {
-      //   method: "POST",
-      //   headers: {
-      //     // 'Content-Type': 'application/json', // Indica que estás enviando JSON en el cuerpo
+      fetch("https://proyectomq.alliedg.tk", {
+         method: "POST",
+         headers: {
+            'Content-Type': 'application/json', // Indica que estás enviando JSON en el cuerpo
       //     'Content-Type': 'text/plain',
-      //   },
-      //   // body: JSON.stringify(user), // Convierte el objeto a JSON y lo envía en el cuerpo
+         },
+          body: JSON.stringify(user), // Convierte el objeto a JSON y lo envía en el cuerpo
       //   body: "Hola Erick hueco",
 
-      fetch("http://proyectomq.alliedg.tk/enviar_mensaje.php?message=Julio%20Mayen",{
+      // fetch("http://proyectomq.alliedg.tk/enviar_mensaje.php?message=Julio%20Mayen",{
       }).then(response => {
         // Manejar la respuesta aquí si es necesario
         if (response.status === 201) {
