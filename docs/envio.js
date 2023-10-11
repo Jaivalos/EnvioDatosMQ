@@ -18,8 +18,8 @@ datos.addEventListener('submit', function (e) {
       console.log('Imagen en base64:', base64Image);
 
       const user = {
-        usuario,
-        contrasena,
+        user: usuario,
+        pass: contrasena,
         img: base64Image, // Agrega la imagen en base64 al objeto de usuario
       };
 
