@@ -3,28 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
+    <title>RABBITMQ</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h2 class="mt-5 mb-3">Iniciar Sesión</h2>
+                <h2 class="mt-5 mb-3">ENVIO DE MENSAJES</h2>
                 <form id="datos">
                     <div class="form-group">
-                        <label for="usuario">User</label>
-                        <input type="text" class="form-control" id="usuario" placeholder="Ingresa tu usuario">
+                        <input type="checkbox" value="Bike">
+                        <label>Enviar string</label>
                     </div>
                     <div class="form-group">
-                        <label for="contrasena">Pass</label>
-                        <input type="password" class="form-control" id="contrasena" placeholder="Ingresa tu contraseña">
+                        <input type="checkbox" value="Bike">
+                        <label>Enviar imagen</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select name="select">
+                            <option value="cola1">Cola 1</option>
+                            <option value="cola2">Cola 2</option>
+                          </select>
                     </div>
                     <div class="form-group">
-                        <label for="foto">Selfie</label>
-                        <input type="file" class="form-control" id="foto" placeholder="Tu fotografía">
+                        <label for="usuario">Cuerpo del mensaje</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Cuerpo del mensaje">
                     </div>
-                    <button id="btnIniciarSesion" type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                    <div class="form-group">
+                        <label for="foto">Tu archivo de imagen</label>
+                        <input type="file" class="form-control" id="foto" placeholder="Selecciona una imagen">
+                    </div>
+                    <button id="btnIniciarSesion" type="submit" class="btn btn-primary">Enviar mensaje</button>
                 </form>
                 <div id="message_success">
                     
