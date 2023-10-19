@@ -1,0 +1,11 @@
+h2.mt-5.mb-3 {
+    text-align: center;
+    padding-bottom: 40px;
+}
+
+.opciones {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}

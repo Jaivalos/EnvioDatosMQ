@@ -1,62 +1,165 @@
+
+
+
+//Valida el formulario
 datos.addEventListener('submit', function (e) {
+
   e.preventDefault();
-  const usuarioInput = document.getElementById('usuario');
-  const contrasenaInput = document.getElementById('contrasena');
+  const usuarioInput = document.getElementById('message');
   const fotoInput = document.getElementById('foto');
-
   const usuario = usuarioInput.value;
-  const contrasena = contrasenaInput.value;
+  const myToast = document.getElementById("myToast");
+  const toastElement = new bootstrap.Toast(myToast, { delay: 3000 })
+  const toastText = document.getElementById("toastText");
+  let checkbox = document.getElementById("checkbox2");
 
-  if (fotoInput.files.length > 0) {
-    const fotoFile = fotoInput.files[0];
-    const reader = new FileReader();
+  //Valida texto ingresado
+  if (!usuario || usuario === "") {
+    if (checkbox.checked) {
+      toastText.textContent = "Ingrese Nombre del archivo"
+    } else {
+      toastText.textContent = "Ingrese Cuerpo del mensaje"
+    }
+    toastElement.show()
+    return
+  }
 
-    reader.onload = function (e) {
-      const base64Image = e.target.result; // La imagen en base64
-      console.log('Usuario:', usuario);
-      console.log('Contraseña:', contrasena);
-      console.log('Imagen en base64:', base64Image);
 
-      const user = {
-        user: usuario,
-        pass: contrasena,
-        img: base64Image, // Agrega la imagen en base64 al objeto de usuario
+  if (checkbox.checked) {
+    //Valida si enviara Imagen
+    if (fotoInput.files.length > 0) {
+      const fotoFile = fotoInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const base64Image = e.target.result; // La imagen en base64
+
+        const data = {
+          message: usuario,
+          colaSeleccionada: selectedValue,
+          img: base64Image, // Agrega la imagen en base64 al objeto de usuario
+        };
+
+        console.log(data)
+        // Envia la solicitud POST al servicio de Express
+        fetch("https://proyectomq.alliedg.tk/user", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+
+        }).then(response => {
+          if (response.status === 201) {
+            toastText.textContent = "Mensaje enviado"
+            toastElement.show()
+          } else {
+            toastText.textContent = "Error al enviar"
+            toastElement.show()
+          }
+        }).catch(error => {
+          toastText.textContent = "Error al enviar: " + error
+          toastElement.show()
+        });
       };
 
-      // Envia la solicitud POST al servicio de Express
-      fetch("https://proyectomq.alliedg.tk/user", {
-         method: "POST",
-         headers: {
-             'Content-Type': 'application/json', // Indica que estás enviando JSON en el cuerpo
-      // //     'Content-Type': 'text/plain',
-         },
-           body: JSON.stringify(user), // Convierte el objeto a JSON y lo envía en el cuerpo
-      // //   body: "Hola Erick hueco",
+      reader.readAsDataURL(fotoFile); // Lee la imagen como una URL de datos en base64
+    } else {
+      toastText.textContent = "Seleccione una imagen"
+      toastElement.show()
+    }
 
-       //fetch("http://proyectomq.alliedg.tk/enviar_mensaje.php?message=Julio%20Mayen",{
-      }).then(response => {
-        // Manejar la respuesta aquí si es necesario
-        if (response.status === 201) {
-          const messageSucceess = document.getElementById("message_success");
-          messageSucceess.append("Usuario creado con éxito.")
-          console.log('Usuario creado con éxito.');
-        } else {
-          console.error('Error al crear el usuario.');
-        }
-      }).catch(error => {
-        console.error('Error de red:', error);
-      });
+  } else {
+    //Valida si enviara string
+
+    const data = {
+      message: usuario,
+      colaSeleccionada: selectedValue,
+      img: "",
     };
 
-    reader.readAsDataURL(fotoFile); // Lee la imagen como una URL de datos en base64
-  } else {
-    console.log('Usuario:', usuario);
-    console.log('Contraseña:', contrasena);
-    console.log('No se seleccionó una imagen');
+    console.log(data)
+    // Envia la solicitud POST al servicio de Express
+    fetch("https://proyectomq.alliedg.tk/user", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+
+    }).then(response => {
+      if (response.status === 201) {
+        toastText.textContent = "Mensaje enviado"
+        toastElement.show()
+      } else {
+        toastText.textContent = "Error al enviar"
+        toastElement.show()
+      }
+    }).catch(error => {
+      toastText.textContent = "Error al enviar: " + error
+      toastElement.show()
+    });
   }
 });
 
+var selectElement = document.getElementById("miSeleccion");
+var selectedValue = selectElement.value;
+const checkbox1 = document.querySelector('.checkbox1');
+const checkbox2 = document.querySelector('.checkbox2');
+const seccion1 = document.getElementById('seccion1');
+const seccion2 = document.getElementById('seccion2');
+
+//Validar el cambio de valor en el select
+function myFunction() {
+  selectedValue = document.getElementById("miSeleccion").value;
+}
+
+//Checkear por defecto Enviar String
+function alCargar() {
+  miSeleccion.style.display = checkbox2.checked ? 'none' : 'block';
+  let checkbox1 = document.querySelector('.checkbox1');
+  checkbox1.checked = true
+}
+
+//Valida los cambios en los checkboxes
+function validarCheckes(numero, checkbox) {
+  var inputElement = document.getElementById("message");
+  var labelElement = document.querySelector("label[for='message']");
+  if (numero === 1) {
+    if (checkbox.checked) {
+      miSeleccion.style.display = 'block';
+      seccion2.style.display = 'none';
+      checkbox2.checked = false;
+
+      selectElement.value = "cola1";
+      selectedValue = "cola1"
+
+      labelElement.textContent = "Cuerpo del mensaje";
+      inputElement.placeholder = "cuerpo del mensaje";
+    } else {
+      checkbox.checked = true;
+    }
+  } else {
+    if (checkbox.checked) {
+      seccion2.style.display = checkbox2.checked ? 'block' : 'none';
+      miSeleccion.style.display = checkbox2.checked ? 'none' : 'block';
+      selectElement.value = "cola2";
+      selectedValue = "cola2"
+
+      miSeleccion.style.display = 'none';
+      checkbox1.checked = false;
+
+      labelElement.textContent = "Nombre del archivo";
+      inputElement.placeholder = "Nombre del archivo";
+    } else {
+      checkbox.checked = true;
+
+    }
+  }
+}
 
 
-  
+
+
+
 
