@@ -12,6 +12,7 @@ datos.addEventListener('submit', function (e) {
   const toastElement = new bootstrap.Toast(myToast, { delay: 3000 })
   const toastText = document.getElementById("toastText");
   let checkbox = document.getElementById("checkbox2");
+  const boton = document.getElementById("btnIniciarSesion");
 
   //Valida texto ingresado
   if (!usuario || usuario === "") {
@@ -25,6 +26,8 @@ datos.addEventListener('submit', function (e) {
   }
 
 
+  boton.disabled = true
+  boton.style.backgroundColor = '#000'
   if (checkbox.checked) {
     //Valida si enviara Imagen
     if (fotoInput.files.length > 0) {
@@ -60,6 +63,10 @@ datos.addEventListener('submit', function (e) {
         }).catch(error => {
           toastText.textContent = "Error al enviar: " + error
           toastElement.show()
+        }).finally(() => {
+      
+          boton.disabled = false
+          boton.style.backgroundColor = '#007BFF'
         });
       };
 
@@ -89,7 +96,7 @@ datos.addEventListener('submit', function (e) {
 
     }).then(response => {
       if (response.status === 201) {
-        toastText.textContent = "Mensaje enviado"
+        toastText.textContent = "Imagen enviada"
         toastElement.show()
       } else {
         toastText.textContent = "Error al enviar"
@@ -98,6 +105,10 @@ datos.addEventListener('submit', function (e) {
     }).catch(error => {
       toastText.textContent = "Error al enviar: " + error
       toastElement.show()
+    }).finally(() => {
+      
+      boton.disabled = false
+      boton.style.backgroundColor = '#007BFF'
     });
   }
 });
