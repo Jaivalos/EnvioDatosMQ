@@ -54,7 +54,7 @@ datos.addEventListener('submit', function (e) {
 
         }).then(response => {
           if (response.status === 201) {
-            toastText.textContent = "Mensaje enviado"
+            toastText.textContent = "Imagen enviada"
             toastElement.show()
           } else {
             toastText.textContent = "Error al enviar"
@@ -96,7 +96,7 @@ datos.addEventListener('submit', function (e) {
 
     }).then(response => {
       if (response.status === 201) {
-        toastText.textContent = "Imagen enviada"
+        toastText.textContent = "Mensaje enviado"
         toastElement.show()
       } else {
         toastText.textContent = "Error al enviar"
