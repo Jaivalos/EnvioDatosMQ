@@ -1,10 +1,12 @@
 
 
 
-//Valida el formulario
+//Ejecuta cuando presiona el boton de Enviar
 datos.addEventListener('submit', function (e) {
 
   e.preventDefault();
+
+  //Obtiene los valores del formulario
   const usuarioInput = document.getElementById('message');
   const fotoInput = document.getElementById('foto');
   const usuario = usuarioInput.value;
@@ -35,15 +37,15 @@ datos.addEventListener('submit', function (e) {
       const reader = new FileReader();
 
       reader.onload = function (e) {
-        const base64Image = e.target.result; // La imagen en base64
+        //Obtiene la imagen en base64
+        const base64Image = e.target.result;
 
         const data = {
           message: usuario,
           colaSeleccionada: selectedValue,
-          img: base64Image, // Agrega la imagen en base64 al objeto de usuario
+          img: base64Image,
         };
 
-        console.log(data)
         // Envia la solicitud POST al servicio de Express
         fetch("https://proyectomq.alliedg.tk/user", {
           method: "POST",
@@ -64,13 +66,14 @@ datos.addEventListener('submit', function (e) {
           toastText.textContent = "Error al enviar: " + error
           toastElement.show()
         }).finally(() => {
-      
+
           boton.disabled = false
           boton.style.backgroundColor = '#007BFF'
         });
       };
 
-      reader.readAsDataURL(fotoFile); // Lee la imagen como una URL de datos en base64
+      // Lee la imagen como una URL de datos en base64
+      reader.readAsDataURL(fotoFile);
     } else {
       toastText.textContent = "Seleccione una imagen"
       toastElement.show()
@@ -78,14 +81,12 @@ datos.addEventListener('submit', function (e) {
 
   } else {
     //Valida si enviara string
-
     const data = {
       message: usuario,
       colaSeleccionada: selectedValue,
       img: "",
     };
 
-    console.log(data)
     // Envia la solicitud POST al servicio de Express
     fetch("https://proyectomq.alliedg.tk/user", {
       method: "POST",
@@ -106,13 +107,14 @@ datos.addEventListener('submit', function (e) {
       toastText.textContent = "Error al enviar: " + error
       toastElement.show()
     }).finally(() => {
-      
+
       boton.disabled = false
       boton.style.backgroundColor = '#007BFF'
     });
   }
 });
 
+//Obtiene los valores del formulario
 var selectElement = document.getElementById("miSeleccion");
 var selectedValue = selectElement.value;
 const checkbox1 = document.querySelector('.checkbox1');
@@ -136,6 +138,7 @@ function alCargar() {
 function validarCheckes(numero, checkbox) {
   var inputElement = document.getElementById("message");
   var labelElement = document.querySelector("label[for='message']");
+  //Este si enviara String
   if (numero === 1) {
     if (checkbox.checked) {
       miSeleccion.style.display = 'block';
@@ -150,6 +153,8 @@ function validarCheckes(numero, checkbox) {
     } else {
       checkbox.checked = true;
     }
+    //Este si enviara imagen
+    //Envia la imagen por defecto a la cola2
   } else {
     if (checkbox.checked) {
       seccion2.style.display = checkbox2.checked ? 'block' : 'none';
