@@ -1,6 +1,7 @@
 h2.mt-5.mb-3 {
     text-align: center;
     padding-bottom: 40px;
+    background-color: #fff;
 }
 
 .opciones {
@@ -8,4 +9,20 @@ h2.mt-5.mb-3 {
     justify-content: space-around;
     background-color: #f1f1f1;
     border-radius: 10px;
+}
+#particles-js {
+	height: 100%; 
+	width: 100%;
+    position:fixed;
+    z-index: -1;
+
+}
+body{
+    background-color: #52BE80;
+}
+
+.logoumg{   
+    position: fixed;
+    left:41%;
+
 }
