@@ -29,7 +29,6 @@ datos.addEventListener('submit', function (e) {
 
 
   boton.disabled = true
-  boton.style.backgroundColor = '#000'
   if (checkbox.checked) {
     //Valida si enviara Imagen
     if (fotoInput.files.length > 0) {
@@ -68,7 +67,6 @@ datos.addEventListener('submit', function (e) {
         }).finally(() => {
 
           boton.disabled = false
-          boton.style.backgroundColor = '#007BFF'
         });
       };
 
@@ -109,9 +107,9 @@ datos.addEventListener('submit', function (e) {
     }).finally(() => {
 
       boton.disabled = false
-      boton.style.backgroundColor = '#007BFF'
     });
   }
+  boton.disabled = false
 });
 
 //Obtiene los valores del formulario
